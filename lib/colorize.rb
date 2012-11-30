@@ -9,6 +9,11 @@ end
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
 def            time(text);   colorize(text, '4;33'); end
+def         feature(text);   colorize(text, '1;37'); end
+def          action(text);   colorize(text, '0'); end
+def         attempt(text);   colorize(text, '33'); end
+def attempt_success(text);   colorize(text, '32'); end
+def    attempt_fail(text);   colorize(text, '31'); end
 def         browser(text);   colorize(text, '30;47'); end
 def blue_background(text);   colorize(text, '44'); end
 

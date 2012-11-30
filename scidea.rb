@@ -4,7 +4,6 @@
 ## Distributed/forked watir?
 ## HTML output for screenshots
 
-require 'erb'
 require 'watir'
 load 'lib/colorize.rb'
 load 'lib/ui.rb'
@@ -99,8 +98,14 @@ html_report = "#{session}/report.html"
 
 puts "==> Visit report.html @ cd #{session}/"
 
+puts "A browser should bring up the report shortly... "
+puts "                                                "
+
 output = Watir::Browser.new
 output.goto "file://#{html_report}"
+
+puts "*Gameloss*"
+
 
 
 
