@@ -34,7 +34,16 @@ puts "                              "
 
 Watir.driver = :webdriver
 
-browser_type_list  = [:chrome, :ie, :firefox]
+puts "Are you on a Linux machine(y/n)?: "
+linux_machine = gets.chomp
+
+if linux_machine == 'y'
+  browser_type_list = [:chrome, :firefox]
+else
+  browser_type_list  = [:chrome, :ie, :firefox]
+end
+
+puts "                                        "
 
 instance_list = {"cardiovillage"                 => {:url => 'cardiovillage.com', :color => :black_blue},
                  "prenatal nutrition training"   => {:url => 'prenatalnutritiontraining.com', :color => :black_purple},
@@ -42,12 +51,16 @@ instance_list = {"cardiovillage"                 => {:url => 'cardiovillage.com'
                  "hsfc"                          => {:url => 'onlinehsfc.org', :color => :black_red},
                  "grandrounds"                   => {:url => 'uvagrandrounds.com', :color => :black_teal} }
 
-instance_list.each_pair do |instance, info|
+browser_type_list.each { |browser_type|
 
-  browser_type_list.each { |browser_type|
+  b = Watir::Browser.new browser_type
+
+  instance_list.each_pair do |instance, info|
+
+
 
     starts = Time.now
-    puts title(instance, instance[info][:color]) + " in " + browser(browser_type) + " starts @ " + time(starts.to_s)
+    puts title(instance, info[:color]) + " in " + browser(browser_type.to_s) + " starts @ " + time(starts.to_s)
     sub_session = "#{session}/#{instance}"
     Dir::mkdir(sub_session) if not File.directory?(sub_session)
     puts "\t ==> Created #{instance} screenshot sub-directory..."
@@ -56,29 +69,21 @@ instance_list.each_pair do |instance, info|
 
     puts "\t ==> Running #{instance} tests in #{browser_type}..."
 
-
-    # t_string = "<%= #{name} %>"
-    # browser = ERB.new t_string
-    browser = Watir::Browser.new
-    browser.goto "http://#{instance[info][:url]}"
-    browser.screenshot.save screenshot + "homepage.png"
-    if browser.text.include? "Sign"
-      browser.link(:href => /.*users\/sign_up/).click
-      browser.h1(:text => /Registration/).when_present { browser.screenshot.save screenshot + "registration.png" }
-      ## embed to an html report based on types of tests, sections, etc...
-      # embed screenshot, 'image/png'
-    end
-    browser.close
+    Dir[File.dirname(__FILE__) + '/flows/*.rb'].each {|file| load file }
+    t = Thread.new{tests(b, info, screenshot)}
+    t.join
 
     ends = Time.now
-    puts title(instance, info[instance][:color]) + " in " + browser(browser_type) + " ends @ " + time(ends.to_s)
+    puts title(instance, info[:color]) + " in " + browser(browser_type) + " ends @ " + time(ends.to_s)
     puts '--------------------------------------------------------------------'
     elapsed_time = ends - starts
     puts "Time Elapsed: #{elapsed_time.round} seconds"
     puts " "
-  }
 
-end
+  end
+
+  b.close
+}
 
 ################################
 ## Final output and embedding ##

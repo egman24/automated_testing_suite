@@ -9,7 +9,7 @@ end
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
 def            time(text);   colorize(text, '4;33'); end
-def         browser(text);   colorize(text, '37;40'); end
+def         browser(text);   colorize(text, '30;47'); end
 def blue_background(text);   colorize(text, '44'); end
 
 def title(text, color)

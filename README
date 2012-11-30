@@ -6,6 +6,10 @@ http://watirwebdriver.com/chrome/
 
     * Be sure to add to $PATH
 
+InternetExplorerDriver standalone server for 64-bit IE
+http://code.google.com/p/selenium/downloads/list
+
+    * Be sure to add to $PATH
 
 
 PHILOSOPHY:
@@ -35,12 +39,31 @@ Claim credit
 
 }
 
+EVENTUALLY MAKE MODULES and CLASSES TO REPRESENT
+    FLOWS (user getting things done),
+    PAGES (all options on one static page/url)
+    * remember, both of these can be different when State is different ==>
+        ENV variables/
+        SESSION variables/
+        ADMIN and CONFIG settings/
+        DATA
+
 FEATURES:
+
+distribute work
+
+    * if i could cli to manipulate vms and local browsers in mac env -- i would be able to run all browsers
+    * print out ENV variables, browser version variables, driver version variables... that would be excellent
 
 browser suites
 
+    * :ie tag will run in linux but use default ff.... make conditional based on os?
     * Give command line option to run full browser suite, or a specific browser.
     * Figure out how to note all browser versions and how to switch between easily
+    * make it a CLI option at what point to close browser windows to do away with session/cookies...
+        - after each elemental test,
+        - after test suite of all instances in one browser,
+        - after one instance in one browser
 
 CLI UI
 
