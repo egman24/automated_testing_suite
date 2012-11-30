@@ -17,3 +17,23 @@ See learner capture response
 Claim credit
 
 }
+
+watir_projects/
+              |
+              |-- report.rhtml
+              |-- README
+              |-- scidea.rb
+              |-- main.css
+              |-- Gemfile
+              |-- Gemfile.lock
+              |-- .rvmrc
+              |-- .gitignore
+              |--  screenshots/
+                              |
+                              |-- (%Y-%m-%d_%H%M%S/)*
+                              |                  |
+                                                 |-- erb.html
+                                                 |-- erb.rhtml
+                                                 |-- main.css
+                                                 |-- <instance>\
+                                                               |-- (<instance>_page_action.png)*
