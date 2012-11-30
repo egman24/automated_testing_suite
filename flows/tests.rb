@@ -15,5 +15,5 @@ def tests(b, info, screenshot)
     puts "...I can't find the link to register!"
   end
 
-
+  puts " "
 end
