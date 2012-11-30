@@ -20,7 +20,7 @@ Claim credit
 
 * Make the Ui.title_logo customizeable by test suite
     -- example -- base case test suite, then scidea 2.0, scidea 3.0, legacy
-
+* Abstract the ui class out of source control of core as 'custom themes'? load if exists, if not default value
 
 Structure:
 

@@ -11,11 +11,9 @@ load 'lib/ui.rb'
 
 Watir.driver = :webdriver
 
-instance_list = {"cardiovillage"                        => 'cardiovillage.com',
-                 "prenatal nutrition training"          => 'prenatalnutritiontraining.com',
-                 "montpelier"                           => 'learn.montpelier.org',
-                 "hsfc"                                 => 'onlinehsfc.org',
-                 "grandrounds"                          => 'uvagrandrounds.com'}
+###############
+## Bootstrap ##
+###############
 
 Ui.title_logo
 
@@ -30,7 +28,18 @@ Dir::mkdir(session) if not File.directory?(session)
 puts "\t ==> Created session directory for screenshots..."
 
 puts "\t ==> Beginning test suite..."
-puts "                            "
+puts "                              "
+
+################
+## Test suite ##
+################
+
+instance_list = {"cardiovillage"                 => 'cardiovillage.com',
+                 "prenatal nutrition training"   => 'prenatalnutritiontraining.com',
+                 "montpelier"                    => 'learn.montpelier.org',
+                 "hsfc"                          => 'onlinehsfc.org',
+                 "grandrounds"                   => 'uvagrandrounds.com'}
+
 instance_list.each_pair do |name, url|
 
   starts = Time.now
