@@ -52,6 +52,9 @@ instance_list = {"cardiovillage"                 => {:url => 'cardiovillage.com'
 
 browser_type_list.each { |browser_type|
 
+  puts "\t ==> #{browser_type} is loading..."
+  puts "                                    "
+
   b = Watir::Browser.new browser_type
 
   instance_list.each_pair do |instance, info|

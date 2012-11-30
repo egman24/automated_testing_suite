@@ -1,3 +1,11 @@
+REFACTOR:
+
+* have syntactic sugar like colorize for simple 'feature', 'action', 'attempt'.... just one word before a string as entry
+    --(example)--> puts action("\t\t I'm going to visit the homepage...") == action "I'm going to visit the homepage"
+* also tie this syntactic suite sugar into creating embedded screenshot directories by page, browser and flow using "_"
+
+
+
 DEPENDENCIES:
 
 Chrome webdriver
