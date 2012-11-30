@@ -1,0 +1,19 @@
+"Page Tests"
+"Flow Tests"
+
+'Pages' don't exist without context and purpose within 'flows',
+but they do need to be fully tested out for functionality.
+
+Have modular buffet of page test nested in proper places during flows.
+
+
+Iteration 1:
+
+Deploy flows {
+
+Register
+Take course
+See learner capture response
+Claim credit
+
+}
