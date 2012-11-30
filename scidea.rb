@@ -6,15 +6,9 @@
 
 require 'erb'
 require 'watir'
+load 'lib/colorize'
 
 Watir.driver = :webdriver
-
-def colorize(text, color_code)
-    "\e[#{color_code}m#{text}\e[0m"
-end
-
-def yellow(text);   colorize(text, '4;33'); end
-def title(text); colorize(text, '44'); end
 
 instance_list = {"cardiovillage"                        => 'cardiovillage.com',
                  "prenatal nutrition training"          => 'prenatalnutritiontraining.com',
@@ -75,6 +69,11 @@ instance_list.each_pair do |name, url|
   puts "Time Elapsed: #{elapsed_time.round} seconds"
   puts " "
 end
+
+
+##
+## Final output and embedding
+##
 
 `cp report.rhtml #{session}/report.rhtml`
 `cp main.css #{session}/main.css`
