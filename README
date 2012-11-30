@@ -18,6 +18,12 @@ Claim credit
 
 }
 
+* Make the Ui.title_logo customizeable by test suite
+    -- example -- base case test suite, then scidea 2.0, scidea 3.0, legacy
+
+
+Structure:
+
 watir_projects/
               |
               |-- report.rhtml
