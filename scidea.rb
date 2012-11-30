@@ -18,8 +18,8 @@ Ui.title_logo
 directory = File.expand_path("./screenshots")
 session = "#{directory}/#{Time.now.strftime('%Y-%m-%d_%H%M%S')}"
 
-puts "Test Session: " + yellow(session)
-puts "                        "
+puts "Test Session: " + blue_background(session)
+puts "                                         "
 
 Dir::mkdir("screenshots") if not File.directory?("screenshots")
 Dir::mkdir(session) if not File.directory?(session)
