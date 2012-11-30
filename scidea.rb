@@ -6,7 +6,7 @@
 
 require 'erb'
 require 'watir'
-load 'lib/colorize'
+load 'lib/colorize.rb'
 
 Watir.driver = :webdriver
 
