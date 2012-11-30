@@ -7,6 +7,7 @@
 require 'erb'
 require 'watir'
 load 'lib/colorize.rb'
+load 'lib/ui.rb'
 
 Watir.driver = :webdriver
 
@@ -16,15 +17,7 @@ instance_list = {"cardiovillage"                        => 'cardiovillage.com',
                  "hsfc"                                 => 'onlinehsfc.org',
                  "grandrounds"                          => 'uvagrandrounds.com'}
 
-puts "                                            "
-puts "--------------------------------------------"
-puts " ______  _______________  ______ ______  2.0"
-puts "/ |     | |    | || | \ \| |    | |  | |    "
-puts "'------.| |    | || |  | | |----| |__| |    "
-puts " ____|_/|_|____|_||_|_/_/|_|____|_|  |_|    "
-puts "                                            "
-puts "--------------------------------------------"
-puts "                                            "
+Ui.title_logo
 
 directory = File.expand_path("./screenshots")
 session = "#{directory}/#{Time.now.strftime('%Y-%m-%d_%H%M%S')}"
@@ -70,10 +63,9 @@ instance_list.each_pair do |name, url|
   puts " "
 end
 
-
-##
-## Final output and embedding
-##
+################################
+## Final output and embedding ##
+################################
 
 `cp report.rhtml #{session}/report.rhtml`
 `cp main.css #{session}/main.css`
