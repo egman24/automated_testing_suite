@@ -74,10 +74,11 @@ browser_type_list.each { |browser_type|
 
     ends = Time.now
     puts title(instance, info[:color]) + " in " + browser(browser_type) + " ends @ " + time(ends.to_s)
-    puts '--------------------------------------------------------------------'
     elapsed_time = ends - starts
-    puts "Time Elapsed: #{elapsed_time.round} seconds"
-    puts " "
+
+    puts "                                                                                                     "
+    puts "-----------------------------Time Elapsed: #{elapsed_time.round} seconds-----------------------------"
+    puts "                                                                                                     "
 
   end
 
@@ -98,6 +99,7 @@ html_report = "#{session}/report.html"
 
 puts "==> Visit report.html @ cd #{session}/"
 
+puts "                                                "
 puts "A browser should bring up the report shortly... "
 puts "                                                "
 
