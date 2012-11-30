@@ -1,3 +1,15 @@
+DEPENDENCIES:
+
+Chrome webdriver
+http://watirwebdriver.com/chrome/
+http://watirwebdriver.com/chrome/
+
+    * Be sure to add to $PATH
+
+
+
+PHILOSOPHY:
+
 "Page Tests"
 "Flow Tests"
 
@@ -5,6 +17,11 @@
 but they do need to be fully tested out for functionality.
 
 Have modular buffet of page test nested in proper places during flows.
+
+Flow -- should be atomic and modular:
+    - guest perusal
+    - registration
+    - login
 
 
 Iteration 1:
@@ -18,11 +35,20 @@ Claim credit
 
 }
 
-* Make the Ui.title_logo customizeable by test suite
-    -- example -- base case test suite, then scidea 2.0, scidea 3.0, legacy
-* Abstract the ui class out of source control of core as 'custom themes'? load if exists, if not default value
+FEATURES:
 
-Structure:
+browser suites
+
+    * Give command line option to run full browser suite, or a specific browser.
+    * Figure out how to note all browser versions and how to switch between easily
+
+CLI UI
+
+    * Make the Ui.title_logo customizeable by test suite
+         -- example -- base case test suite, then scidea 2.0, scidea 3.0, legacy
+    * Abstract the ui class out of source control of core as 'custom themes'? load if exists, if not default value
+
+STRUCTURE:
 
 watir_projects/
               |

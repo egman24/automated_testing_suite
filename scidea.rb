@@ -9,8 +9,6 @@ require 'watir'
 load 'lib/colorize.rb'
 load 'lib/ui.rb'
 
-Watir.driver = :webdriver
-
 ###############
 ## Bootstrap ##
 ###############
@@ -34,42 +32,52 @@ puts "                              "
 ## Test suite ##
 ################
 
-instance_list = {"cardiovillage"                 => 'cardiovillage.com',
-                 "prenatal nutrition training"   => 'prenatalnutritiontraining.com',
-                 "montpelier"                    => 'learn.montpelier.org',
-                 "hsfc"                          => 'onlinehsfc.org',
-                 "grandrounds"                   => 'uvagrandrounds.com'}
+Watir.driver = :webdriver
 
-instance_list.each_pair do |name, url|
+browser_type_list  = [:chrome, :ie, :firefox]
 
-  starts = Time.now
-  puts title(name) + " starts @ " + yellow(starts.to_s)
-  sub_session = "#{session}/#{name}"
-  Dir::mkdir(sub_session) if not File.directory?(sub_session)
-  puts "\t ==> Created #{name} screenshot sub-directory..."
+instance_list = {"cardiovillage"                 => {:url => 'cardiovillage.com', :color => :black_blue},
+                 "prenatal nutrition training"   => {:url => 'prenatalnutritiontraining.com', :color => :black_purple},
+                 "montpelier"                    => {:url => 'learn.montpelier.org', :color => :black_gold },
+                 "hsfc"                          => {:url => 'onlinehsfc.org', :color => :black_red},
+                 "grandrounds"                   => {:url => 'uvagrandrounds.com', :color => :black_teal} }
 
-  screenshot = "#{sub_session}/#{name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}_"
+instance_list.each_pair do |instance, info|
 
-  puts "\t ==> Running #{name} tests..."
-	# t_string = "<%= #{name} %>"
-	# browser = ERB.new t_string
-	browser = Watir::Browser.new
-	browser.goto "http://#{url}"
-  browser.screenshot.save screenshot + "homepage.png"
-  if browser.text.include? "Sign"
-    browser.link(:href => /.*users\/sign_up/).click
-    browser.h1(:text => /Registration/).when_present { browser.screenshot.save screenshot + "registration.png" }
-    ## embed to an html report based on types of tests, sections, etc...
-    # embed screenshot, 'image/png'
-  end
-	browser.close
+  browser_type_list.each { |browser_type|
 
-  ends = Time.now
-  puts title(name) + " ends @ " + yellow(ends.to_s)
-  puts '--------------------------------------------------------------------'
-  elapsed_time = ends - starts
-  puts "Time Elapsed: #{elapsed_time.round} seconds"
-  puts " "
+    starts = Time.now
+    puts title(instance, info[instance][:color]) + " in " + browser(browser_type) + " starts @ " + time(starts.to_s)
+    sub_session = "#{session}/#{instance}"
+    Dir::mkdir(sub_session) if not File.directory?(sub_session)
+    puts "\t ==> Created #{instance} screenshot sub-directory..."
+
+    screenshot = "#{sub_session}/#{instance.gsub(' ','_').gsub(/[^0-9A-Za-z_]/,'')}_#{browser_type}_"
+
+    puts "\t ==> Running #{instance} tests in #{browser_type}..."
+
+
+    # t_string = "<%= #{name} %>"
+    # browser = ERB.new t_string
+    browser = Watir::Browser.new
+    browser.goto "http://#{info[name][:url]}"
+    browser.screenshot.save screenshot + "homepage.png"
+    if browser.text.include? "Sign"
+      browser.link(:href => /.*users\/sign_up/).click
+      browser.h1(:text => /Registration/).when_present { browser.screenshot.save screenshot + "registration.png" }
+      ## embed to an html report based on types of tests, sections, etc...
+      # embed screenshot, 'image/png'
+    end
+    browser.close
+
+    ends = Time.now
+    puts title(instance, info[instance][:color]) + " in " + browser(browser_type) + " ends @ " + time(ends.to_s)
+    puts '--------------------------------------------------------------------'
+    elapsed_time = ends - starts
+    puts "Time Elapsed: #{elapsed_time.round} seconds"
+    puts " "
+  }
+
 end
 
 ################################
