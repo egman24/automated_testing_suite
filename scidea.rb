@@ -76,15 +76,15 @@ instance_list.each_pair do |name, url|
   puts " "
 end
 
-`cp erb.rhtml #{session}/erb.rhtml`
+`cp report.rhtml #{session}/report.rhtml`
 `cp main.css #{session}/main.css`
 
-raw_report  = "#{session}/erb.rhtml"
-html_report = "#{session}/erb.html"
+raw_report  = "#{session}/report.rhtml"
+html_report = "#{session}/report.html"
 
 `cd #{session} && ruby #{raw_report} >> #{html_report}`
 
-puts "==> Visit erb.html @ cd #{session}/"
+puts "==> Visit report.html @ cd #{session}/"
 
 output = Watir::Browser.new
 output.goto "file://#{html_report}"
