@@ -47,7 +47,7 @@ instance_list.each_pair do |instance, info|
   browser_type_list.each { |browser_type|
 
     starts = Time.now
-    puts title(instance, info[instance][:color]) + " in " + browser(browser_type) + " starts @ " + time(starts.to_s)
+    puts title(instance, instance[info][:color]) + " in " + browser(browser_type) + " starts @ " + time(starts.to_s)
     sub_session = "#{session}/#{instance}"
     Dir::mkdir(sub_session) if not File.directory?(sub_session)
     puts "\t ==> Created #{instance} screenshot sub-directory..."
@@ -60,7 +60,7 @@ instance_list.each_pair do |instance, info|
     # t_string = "<%= #{name} %>"
     # browser = ERB.new t_string
     browser = Watir::Browser.new
-    browser.goto "http://#{info[name][:url]}"
+    browser.goto "http://#{instance[info][:url]}"
     browser.screenshot.save screenshot + "homepage.png"
     if browser.text.include? "Sign"
       browser.link(:href => /.*users\/sign_up/).click
