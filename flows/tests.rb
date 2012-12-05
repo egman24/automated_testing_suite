@@ -2,7 +2,6 @@ def tests(b, info, screenshot)
 
   puts " "
   puts feature("\tRegistration")
-  h
 
   b.goto "http://#{info[:url]}"
   b.screenshot.save screenshot + "homepage.png"
