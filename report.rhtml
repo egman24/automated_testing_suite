@@ -50,3 +50,6 @@ template = %{
 </body>
 </html>
 }.gsub(/^  /, '')
+
+rhtml = ERB.new(template)
+rhtml.run
