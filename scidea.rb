@@ -44,6 +44,7 @@ end
 
 puts "                                        "
 
+#TODO extract these settings to a yaml conifg file which can be updated easily
 instance_list = {"cardiovillage"                 => {:url => 'cardiovillage.com', :color => :black_blue},
                  "prenatal nutrition training"   => {:url => 'prenatalnutritiontraining.com', :color => :black_purple},
                  "montpelier"                    => {:url => 'learn.montpelier.org', :color => :black_gold },
